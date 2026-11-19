@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My Digital Universe</title>
+<meta name="theme-color" content="#0b0620">
+<meta name="description" content="My Digital Universe - all my websites in one place">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Universe">
+<style>
+:root{--bg:#0b0620;--g:rgba(255,255,255,.07);--gb:rgba(255,255,255,.14);--t:#f1ecff;--m:#a99fd0;--p:#8b5cf6;--b:#4f7cff;--k:#ff7ad9}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Poppins,system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;overflow-x:hidden;line-height:1.6}
+.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.17em;margin-right:.4em;flex:none}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.45;z-index:-1;animation:fl 14s ease-in-out infinite}
+.o1{width:340px;height:340px;background:var(--p);top:-80px;left:-80px}
+.o2{width:300px;height:300px;background:var(--b);bottom:10%;right:-90px;animation-delay:-5s}
+.o3{width:240px;height:240px;background:var(--k);top:45%;left:30%;opacity:.18;animation-delay:-9s}
+@keyframes fl{50%{transform:translate(40px,-50px) scale(1.15)}}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.wrap{max-width:1100px;margin:auto;padding:0 18px}
+.hero{text-align:center;padding:60px 0 24px}
+.logo{width:46px;height:46px;stroke:var(--k);fill:rgba(255,122,217,.18);stroke-width:1.5;filter:drop-shadow(0 0 14px var(--k));animation:pu 4s ease-in-out infinite}
+@keyframes pu{50%{transform:scale(1.12) rotate(12deg)}}
+.hero h1{font-size:clamp(2rem,8vw,3.8rem);font-weight:700;background:linear-gradient(90deg,#c4b5fd,#7aa2ff,#ff9be5);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px;line-height:1.2;margin-top:6px}
+.hero p{color:var(--m);max-width:560px;margin:10px auto}
+.quote{margin:18px auto;max-width:620px;padding:16px 22px;border-radius:20px;background:var(--g);border:1px solid var(--gb);backdrop-filter:blur(14px);font-size:1.02rem;font-style:italic;box-shadow:0 0 40px rgba(139,92,246,.18)}
+.sf{display:flex;gap:8px;max-width:640px;margin:22px auto 8px;padding:6px;border-radius:50px;background:var(--g);border:1px solid var(--gb);backdrop-filter:blur(14px);transition:.3s}
+.sf:focus-within{box-shadow:0 0 30px rgba(139,92,246,.5);border-color:var(--p)}
+.sf input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--t);font-size:1rem;padding:10px 16px;font-family:inherit}
+button,.btn{font-family:inherit;cursor:pointer;border:0;color:#fff;font-size:.9rem;padding:10px 20px;border-radius:30px;background:linear-gradient(135deg,var(--p),var(--b));transition:.25s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:42px}
+button:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(139,92,246,.5)}
+.sec{background:var(--g);border:1px solid var(--gb)}
+.sec:hover{box-shadow:none}
+.dg{background:linear-gradient(135deg,#ef4444,#be185d)}
+.stat{color:var(--m);font-size:.85rem;margin:6px 0 14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 14px;justify-content:center;flex-wrap:wrap}
+.chip{padding:7px 16px;border-radius:30px;background:var(--g);border:1px solid var(--gb);color:var(--t);font-size:.82rem;min-height:36px}
+.chip.on{background:linear-gradient(135deg,var(--p),var(--b))}
+h2.t{font-size:1.2rem;margin:30px 0 14px;font-weight:500;color:#d7ccff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{border-radius:22px;overflow:hidden;background:var(--g);border:1px solid var(--gb);backdrop-filter:blur(12px);transition:.3s;animation:up .6s both;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(139,92,246,.35);border-color:var(--p)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.cv{position:relative;height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:700;color:rgba(255,255,255,.85);overflow:hidden}
+.cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cb{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cb h3{font-size:1.05rem;word-break:break-word}
+.cb p{color:var(--m);font-size:.85rem;flex:1;word-break:break-word}
+.cat{font-size:.72rem;padding:2px 10px;border-radius:20px;background:rgba(139,92,246,.25);align-self:flex-start}
+.tags span{font-size:.72rem;color:var(--k);margin-right:8px}
+.dt{font-size:.72rem;color:var(--m)}
+.row{display:flex;gap:8px}
+.row>*{flex:1;padding:9px 6px}
+.empty{text-align:center;padding:40px 10px;color:var(--m);grid-column:1/-1}
+footer{text-align:center;padding:50px 18px 40px;color:var(--m);font-size:.85rem}
+.ov{position:fixed;inset:0;background:rgba(5,2,18,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.ov.on{display:flex;animation:fi .3s}
+@keyframes fi{from{opacity:0}}
+.box{width:100%;max-width:420px;background:rgba(24,14,58,.97);border:1px solid var(--gb);border-radius:24px;padding:26px;box-shadow:0 0 60px rgba(139,92,246,.35);max-height:92vh;overflow:auto}
+.box h3{margin-bottom:6px;font-size:1.25rem}
+.box p.s{color:var(--m);font-size:.85rem;margin-bottom:14px}
+.full{z-index:60;background:var(--bg)}
+label{display:block;font-size:.8rem;color:var(--m);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px 14px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--gb);color:var(--t);font-family:inherit;font-size:.95rem;outline:0}
+select option{background:#1a0f3d}
+input:focus,select:focus,textarea:focus{border-color:var(--p)}
+.pw{position:relative}.pw button{position:absolute;right:4px;top:4px;padding:6px 12px;min-height:34px;font-size:.75rem;background:var(--g)}
+.pw input{padding-right:76px}
+.err{color:#ff8aa0;font-size:.82rem;min-height:20px;margin-top:6px}
+.pv{width:100%;max-width:960px;height:90vh;background:#120a2e;border-radius:20px;border:1px solid var(--gb);display:flex;flex-direction:column;overflow:hidden}
+.pv header{display:flex;gap:8px;align-items:center;padding:10px 14px;justify-content:space-between}
+.pv header b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv iframe{flex:1;border:0;background:#fff}
+.pv .nt{padding:8px 14px;font-size:.78rem;color:var(--m)}
+#adm{position:fixed;inset:0;z-index:55;background:var(--bg);overflow:auto;display:none}
+#adm.on{display:block}
+.ah{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:rgba(11,6,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--gb);gap:8px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:14px 18px 4px}
+.tabs button{background:var(--g);border:1px solid var(--gb);white-space:nowrap}
+.tabs button.on{background:linear-gradient(135deg,var(--p),var(--b))}
+.pn{display:none;max-width:760px;margin:14px auto;padding:0 18px 60px}.pn.on{display:block}
+.gl{background:var(--g);border:1px solid var(--gb);border-radius:20px;padding:18px;margin-bottom:14px}
+.li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gb);flex-wrap:wrap}
+.li:last-child{border:0}.li div.n{flex:1;min-width:140px;overflow:hidden}.li small{color:var(--m);display:block;word-break:break-all}
+.li .row{flex:0 0 auto}.li .row button{padding:7px 14px;min-height:36px}
+.nb{background:rgba(255,200,100,.08);border:1px solid rgba(255,200,100,.3);color:#ffd9a0;border-radius:14px;padding:12px;font-size:.8rem;margin-bottom:14px}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);padding:12px 22px;border-radius:30px;background:#2a1a5e;border:1px solid var(--p);z-index:99;transition:.4s;max-width:92vw;text-align:center;font-size:.9rem}
+#toast.on{transform:translateX(-50%)}#toast.err{background:#5e1a2e;border-color:#ff5c7a}
+.hide{display:none!important}
+@media(max-width:520px){.hero{padding-top:40px}.box{padding:20px}}
+.cv .i{width:56px;height:56px;margin:0;stroke-width:1.5}
+#lkv{position:fixed;inset:0;z-index:52;background:rgba(11,6,32,.98);overflow:auto;display:none}
+#lkv.on{display:block}
+#m-lk{z-index:72}#m-pv,#m-ih{z-index:75}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.6L6 22l1.5-7.2L2 10l7.1-1.1z"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 21h14"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v11H5z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3L2 21h20zM12 10v5M12 18v.5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 4 6.5 4 10s-1 7-4 10c-3-3-4-6.5-4-10s1-7 4-10z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM11 18h2"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></symbol>
+</svg>
+<canvas id="stars"></canvas>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<div class="wrap">
+ <section class="hero">
+  <svg class="i logo"><use href="#i-star"/></svg>
+  <h1>My Digital Universe</h1>
+  <p>Where every website is a star, every idea a galaxy, and every dream a world waiting to be explored.</p>
+  <div class="quote">Every website is not just a link. It is a part of my time, my thinking and my hard work.</div>
+  <form class="sf" id="sf" autocomplete="off">
+   <input id="q" type="search" enterkeyhint="search" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Search websites..." aria-label="Search">
+   <button type="submit" id="sbtn"><svg class="i"><use href="#i-search"/></svg>Search</button>
+  </form>
+  <div class="stat" id="stat"></div>
+  <div style="margin-top:8px"><button id="ib" class="sec"><svg class="i"><use href="#i-phone"/></svg>Add to Home Screen</button></div>
+ </section>
+
+ <div class="chips" id="chips"></div>
+ <h2 class="t" id="gt">All Creations</h2>
+ <div class="grid" id="grid"></div>
+ <div id="rc"><h2 class="t">Recently Added</h2><div class="grid" id="rg"></div></div>
+
+ <footer>
+  <div style="font-size:1rem;color:#cfc4ff">Dream it. Build it. Share it.</div>
+  <div style="margin-top:8px;opacity:.7">Copyright <span id="yr"></span> My Digital Universe. Made with imagination.</div>
+ </footer>
+</div>
+
+<div class="ov full" id="m-setup"><div class="box">
+ <h3><svg class="i"><use href="#i-lock"/></svg>Create Admin Password</h3>
+ <p class="s">Create your admin password. This is a one-time setup.</p>
+ <label>New password (at least 6 characters)</label><div class="pw"><input type="password" id="sp1" autocomplete="new-password"><button type="button" data-eye="sp1">Show</button></div>
+ <label>Confirm password</label><div class="pw"><input type="password" id="sp2" autocomplete="new-password"><button type="button" data-eye="sp2">Show</button></div>
+ <div class="err" id="se"></div>
+ <button id="sb" style="width:100%;margin-top:8px">Save Password</button>
+ <button class="sec" data-close="m-setup" style="width:100%;margin-top:10px">Cancel</button>
+</div></div>
+
+<div class="ov" id="m-login"><div class="box">
+ <h3><svg class="i"><use href="#i-grid"/></svg>Admin Login</h3><p class="s">Enter your admin password.</p>
+ <div class="pw"><input type="password" id="lp" placeholder="Password" autocomplete="current-password"><button type="button" data-eye="lp">Show</button></div>
+ <div class="err" id="le"></div>
+ <div class="row"><button class="sec" data-close="m-login">Cancel</button><button id="lb">Login</button></div>
+</div></div>
+
+<div class="ov" id="m-conf" style="z-index:70"><div class="box"><h3><svg class="i"><use href="#i-alert"/></svg>Are you sure?</h3><p class="s" id="ct"></p>
+ <div class="row"><button class="sec" data-close="m-conf">No</button><button class="dg" id="cy">Yes</button></div></div></div>
+
+<div class="ov" id="m-pv"><div class="pv">
+ <header><b id="pt"></b><div class="row" style="flex:0 0 auto"><a class="btn" id="po" target="_blank" rel="noopener">Open<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a><button class="sec" data-close="m-pv" aria-label="Close"><svg class="i" style="margin:0"><use href="#i-x"/></svg></button></div></header>
+ <iframe id="pf" title="Preview" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+ <div class="nt">If the preview is blank or shows an error, that website blocks embedding. Use the Open button to open it in a new tab.</div>
+</div></div>
+
+<div class="ov" id="m-ih"><div class="box"><h3><svg class="i"><use href="#i-phone"/></svg>Add to Home Screen</h3>
+ <p class="s" id="it"></p><button data-close="m-ih" style="width:100%">Got it</button></div></div>
+
+<div class="ov" id="m-lk"><div class="box"><h3 id="lkt"></h3><p class="s" id="lks"></p>
+ <div class="pw"><input type="password" id="lk1" placeholder="Locker password" autocomplete="off"><button type="button" data-eye="lk1">Show</button></div>
+ <div id="lk2w" class="hide"><label>Confirm locker password</label><div class="pw"><input type="password" id="lk2" autocomplete="off"><button type="button" data-eye="lk2">Show</button></div></div>
+ <div class="err" id="lke"></div>
+ <div class="row"><button class="sec" data-close="m-lk">Cancel</button><button id="lkb">Continue</button></div></div></div>
+
+<div id="lkv">
+ <div class="ah"><b><svg class="i"><use href="#i-lock"/></svg>The Locker</b><div class="row" style="flex:0 0 auto"><button class="sec" id="lkx">Back</button><button class="dg" id="lkk">Lock</button></div></div>
+ <div class="wrap"><div class="sf"><input id="lq" type="search" autocomplete="off" placeholder="Search the Locker..." aria-label="Search the Locker"></div>
+ <h2 class="t" id="lkh"></h2><div class="grid" id="lg"></div><div style="height:60px"></div></div>
+</div>
+
+<div id="adm">
+ <div class="ah"><b><svg class="i"><use href="#i-grid"/></svg>Admin Dashboard</b><div class="row" style="flex:0 0 auto"><button class="sec" id="ax">Home</button><button class="dg" id="lo"><svg class="i"><use href="#i-out"/></svg>Logout</button></div></div>
+ <div class="tabs" id="tabs">
+  <button data-p="p1" class="on">Websites</button><button data-p="p2">Add / Edit</button><button data-p="p3">Categories</button><button data-p="p6">Locker</button><button data-p="p4">Password</button><button data-p="p5">Data &amp; Sync</button>
+ </div>
+ <div class="pn on" id="p1"><div class="gl"><b id="ac"></b><div id="al"></div></div></div>
+ <div class="pn" id="p2"><div class="gl"><b id="ft">Add New Website</b>
+  <label>Website name *</label><input id="fn">
+  <label>Website URL * (https://...)</label><input id="fu" type="url" inputmode="url" autocapitalize="none">
+  <label>Description</label><textarea id="fd" rows="3"></textarea>
+  <label>Category</label><select id="fc"></select>
+  <label>Visibility</label><select id="fv"><option value="open">Open (visible to everyone)</option><option value="locked">Locked (hidden inside the Locker)</option></select>
+  <label>Cover image URL (optional)</label><input id="fi" type="url" autocapitalize="none">
+  <label>Date added</label><input id="fe" type="date">
+  <label>Tags (comma separated)</label><input id="fg" placeholder="game, tool, art">
+  <div class="err" id="fr"></div>
+  <div class="row"><button class="sec" id="fx">Clear</button><button id="fs">Save Website</button></div></div></div>
+ <div class="pn" id="p3"><div class="gl"><b>Categories</b><div id="cl"></div>
+  <label>New category</label><div class="row"><input id="nc" style="flex:2"><button id="na">Add</button></div></div></div>
+ <div class="pn" id="p4"><div class="gl"><b>Change Password</b>
+  <label>Current password</label><input type="password" id="cp0" autocomplete="current-password">
+  <label>New password</label><input type="password" id="cp1" autocomplete="new-password">
+  <label>Confirm new password</label><input type="password" id="cp2" autocomplete="new-password">
+  <div class="err" id="cpe"></div><button id="cpb" style="width:100%">Change Password</button></div>
+  <div class="nb"><svg class="i"><use href="#i-alert"/></svg>Security note: this is a frontend-only (GitHub Pages) website. A localStorage password is not equal to server-side security. Technically skilled users can inspect or modify browser storage and code. The real protection for publishing is your private GitHub token.</div></div>
+ <div class="pn" id="p6">
+  <div class="gl"><b>The Locker</b><p id="lst" style="color:var(--m);font-size:.85rem;margin:6px 0 10px"></p>
+   <div class="row" style="flex-wrap:wrap"><button id="lkc">Create Locker</button><button id="lku">Unlock</button><button class="sec" id="lkl">Lock Now</button></div></div>
+  <div class="gl"><b>Locked Websites</b><div id="ll"></div></div>
+  <div class="gl"><b>Change Locker Password</b>
+   <label>Current locker password</label><input type="password" id="lc0" autocomplete="off">
+   <label>New locker password</label><input type="password" id="lc1" autocomplete="off">
+   <label>Confirm new locker password</label><input type="password" id="lc2" autocomplete="off">
+   <div class="err" id="lce"></div><button id="lcb" style="width:100%">Change Locker Password</button></div>
+  <div class="gl"><b>Reset Locker</b><p style="color:var(--m);font-size:.85rem;margin:6px 0 10px">Forgot the locker password? It cannot be recovered. You can delete the Locker and all locked websites, then create a new one.</p><button class="dg" id="lkr">Delete Locker and All Locked Websites</button></div>
+  <div class="nb"><svg class="i"><use href="#i-lock"/></svg>Locked websites are encrypted (AES-256) with your locker password before they are saved or published, so visitors and GitHub cannot read them without it. The locker password is separate from the admin password.</div>
+ </div>
+ <div class="pn" id="p5">
+  <div class="gl"><b><svg class="i"><use href="#i-globe"/></svg>Publish to Everyone (GitHub Sync)</b>
+   <p style="color:var(--m);font-size:.85rem;margin:6px 0 4px">One-time setup per device. After connecting, every change you save is automatically published for all visitors, from any phone, with no laptop needed. Changes go live in about 1 minute.</p>
+   <label>GitHub username</label><input id="gu" autocapitalize="none" autocorrect="off">
+   <label>Repository name</label><input id="gr" autocapitalize="none" autocorrect="off">
+   <label>Access token (fine-grained, Contents: Read and write)</label><div class="pw"><input type="password" id="gk" autocapitalize="none" autocomplete="off"><button type="button" data-eye="gk">Show</button></div>
+   <div class="err" id="gst" style="color:var(--m)"></div>
+   <div class="row" style="flex-wrap:wrap"><button id="gsv">Save &amp; Connect</button><button class="sec" id="gsn">Sync Now</button><button class="dg" id="gdc">Disconnect</button></div></div>
+  <div class="gl"><b>Backup &amp; Restore</b>
+   <p style="color:var(--m);font-size:.85rem;margin:6px 0 12px">Admin data is kept in this browser (localStorage) and, once GitHub Sync is connected, also in your repository as sites.json. Export a JSON backup now and then.</p>
+   <div class="row" style="flex-wrap:wrap"><button id="ex"><svg class="i"><use href="#i-down"/></svg>Export JSON</button><button class="sec" id="im"><svg class="i"><use href="#i-up"/></svg>Import JSON</button></div>
+   <input type="file" id="imf" accept=".json,application/json" class="hide"></div>
+ </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const LS='dus_data',AU='dus_auth',SS='dus_sess',GH='dus_gh',TMO=15*60*1000;
+const PUBLIC_DATA={sites:[],cats:['General'],updated:0};
+function valid(d){return !!d&&Array.isArray(d.sites)&&Array.isArray(d.cats)}
+function load(){try{const d=JSON.parse(localStorage.getItem(LS));if(valid(d))return d}catch(e){}return JSON.parse(JSON.stringify(PUBLIC_DATA))}
+let D=load(),cur='All',editId=null,onYes=null,syncing=false,dirty=false,fails=0,lockUntil=0,L=null,LK=null,LSALT=null,lkMode='',lkCb=null,fails2=0,lock2=0;
+const ic=n=>'<svg class="i"><use href="#i-'+n+'"/></svg>';
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function safeUrl(u){try{const x=new URL(String(u||'').trim());return/^https?:$/.test(x.protocol)?x.href:''}catch(e){return''}}
+function toast(m,t){const e=$('#toast');e.textContent=m;e.className='on '+(t||'');clearTimeout(toast.t);toast.t=setTimeout(()=>{e.className=''},3200)}
+function openM(id){$('#'+id).classList.add('on')}
+function closeM(id){$('#'+id).classList.remove('on');if(id==='m-pv')$('#pf').src='about:blank';if(id==='m-lk')lkCb=null}
+function ask(msg,fn){$('#ct').textContent=msg;onYes=fn;openM('m-conf')}
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+// ---------- storage + sync
+function save(){D.updated=Date.now();try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){toast('Could not save (storage full or blocked)','err')}queueSync()}
+async function pull(){try{const r=await fetch('sites.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const d=await r.json();
+ if(valid(d)&&(d.updated||0)>=(D.updated||0)){D=d;try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){}await relock();if(cur!=='All'&&!D.cats.includes(cur))cur='All';render();if($('#adm').classList.contains('on')&&!editId)admRender();if($('#lkv').classList.contains('on'))renderLocker()}}catch(e){}}
+const setSt=t=>{const e=$('#gst');if(e)e.textContent=t};
+function ghCfg(){try{const g=JSON.parse(localStorage.getItem(GH));return g&&g.token&&g.owner&&g.repo?g:null}catch(e){return null}}
+function queueSync(){if(!ghCfg())return;if(syncing){dirty=true;return}runSync()}
+function b64(s){const b=new TextEncoder().encode(s);let t='';b.forEach(x=>{t+=String.fromCharCode(x)});return btoa(t)}
+async function ghPut(g){
+ const api='https://api.github.com/repos/'+encodeURIComponent(g.owner)+'/'+encodeURIComponent(g.repo)+'/contents/sites.json',h={Authorization:'Bearer '+g.token,Accept:'application/vnd.github+json'};
+ let sha;const r=await fetch(api+'?t='+Date.now(),{headers:h,cache:'no-store'});
+ if(r.ok)sha=(await r.json()).sha;else if(r.status===401)throw new Error('Token is invalid or expired');else if(r.status!==404)throw new Error('Cannot reach repository ('+r.status+')');
+ const p=await fetch(api,{method:'PUT',headers:h,body:JSON.stringify({message:'Update websites',content:b64(JSON.stringify(D)),sha})});
+ if(!p.ok)throw new Error(p.status===403||p.status===404?'Permission denied. Check username, repo name and token (Contents: Read and write)':'GitHub error '+p.status)}
+async function runSync(){const g=ghCfg();if(!g)return;syncing=true;dirty=false;setSt('Syncing with GitHub...');
+ try{await ghPut(g);setSt('Synced at '+new Date().toLocaleTimeString()+'. Live for everyone in about 1 minute.');setTimeout(()=>{if(!$('#toast').classList.contains('on'))toast('Synced. Visible to everyone in about 1 minute.')},3500)}
+ catch(e){setSt('Error: '+e.message);toast('Sync failed: '+e.message,'err')}
+ syncing=false;if(dirty)runSync()}
+function ghFill(){const g=ghCfg()||{};let o=g.owner||'',r=g.repo||'';if(!o&&location.hostname.endsWith('.github.io')){o=location.hostname.split('.')[0];r=location.pathname.split('/')[1]||location.hostname}
+ $('#gu').value=o;$('#gr').value=r;$('#gk').value=g.token||'';setSt(g.token?'Connected to '+o+'/'+r:'Not connected yet')}
+function touchData(){D.updated=Date.now();try{localStorage.setItem(LS,JSON.stringify(D))}catch(e){}}
+$('#gsv').onclick=()=>{const o=$('#gu').value.trim(),r=$('#gr').value.trim(),k=$('#gk').value.trim();if(!o||!r||!k)return toast('Fill username, repository and token','err');
+ localStorage.setItem(GH,JSON.stringify({owner:o,repo:r,token:k}));touchData();runSync()};
+$('#gsn').onclick=()=>{if(!ghCfg())return toast('Connect GitHub first','err');touchData();runSync()};
+$('#gdc').onclick=()=>ask('Disconnect GitHub Sync on this device? Published data stays online.',()=>{localStorage.removeItem(GH);ghFill();toast('Disconnected')});
+// ---------- crypto / auth
+const b2h=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+async function hash(p,s){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);return b2h(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(s),iterations:150000,hash:'SHA-256'},k,256))}
+async function setPw(p){const s=b2h(crypto.getRandomValues(new Uint8Array(16)));localStorage.setItem(AU,JSON.stringify({s:s,h:await hash(p,s)}))}
+async function chk(p){try{const a=JSON.parse(localStorage.getItem(AU));return!!a&&await hash(p,a.s)===a.h}catch(e){return false}}
+const hasPw=()=>!!localStorage.getItem(AU);
+const sessOk=()=>{const t=+sessionStorage.getItem(SS);return t&&Date.now()-t<TMO};
+const touch=()=>sessionStorage.setItem(SS,Date.now());
+function noCrypto(){if(!(window.crypto&&crypto.subtle)){toast('Password features need a secure (HTTPS) connection','err');return true}return false}
+// ---------- locker (private websites, AES-GCM encrypted)
+const hasLk=()=>!!(D.locker&&D.locker.s&&D.locker.iv&&D.locker.ct);
+function toB(a){let t='';new Uint8Array(a).forEach(x=>{t+=String.fromCharCode(x)});return btoa(t)}
+function fromB(x){const t=atob(x),a=new Uint8Array(t.length);for(let i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a}
+async function dKey(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:200000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function seal(){const iv=crypto.getRandomValues(new Uint8Array(12));const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},LK,new TextEncoder().encode(JSON.stringify(L)));D.locker={v:1,s:toB(LSALT),iv:toB(iv),ct:toB(ct)}}
+async function unseal(key){const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:fromB(D.locker.iv)},key,fromB(D.locker.ct));const a=JSON.parse(new TextDecoder().decode(pt));if(!Array.isArray(a))throw 0;return a}
+async function openLocker(pw){if(!hasLk())return false;try{const salt=fromB(D.locker.s),key=await dKey(pw,salt);const a=await unseal(key);L=a;LK=key;LSALT=salt;return true}catch(e){return false}}
+async function makeLocker(pw){LSALT=crypto.getRandomValues(new Uint8Array(16));LK=await dKey(pw,LSALT);L=[];await seal()}
+async function relock(){if(!LK)return;if(!hasLk()){L=null;LK=null;return}try{L=await unseal(LK)}catch(e){L=null;LK=null}}
+async function persist(){if(L&&LK)await seal();save()}
+function promptLocker(mode,cb){lkMode=mode;lkCb=cb;$('#lk1').value=$('#lk2').value='';$('#lke').textContent='';$('#lk2w').classList.toggle('hide',mode!=='create');
+ $('#lkt').textContent=mode==='create'?'Create Locker Password':'Unlock the Locker';
+ $('#lks').textContent=mode==='create'?'Choose a password for your Locker. Every locked website will be hidden behind it. Do not forget it, it cannot be recovered.':'Enter the locker password to see the private websites.';
+ openM('m-lk');setTimeout(()=>$('#lk1').focus(),100)}
+function ensureLocker(cb){if(L)return cb();promptLocker(hasLk()?'unlock':'create',cb)}
+function needLocker(cb){if(L||!hasLk())return cb();promptLocker('unlock',cb)}
+$('#lkb').onclick=async()=>{if(noCrypto())return;const a=$('#lk1').value,b=$('#lk2').value,e=$('#lke');
+ if(!a)return e.textContent='Password cannot be empty.';
+ if(lkMode==='create'){if(a.length<6)return e.textContent='At least 6 characters are required.';if(a!==b)return e.textContent='The two passwords do not match.'}
+ else if(Date.now()<lock2)return e.textContent='Too many attempts. Try again in '+Math.ceil((lock2-Date.now())/1000)+' seconds.';
+ $('#lkb').textContent='Working...';let ok=true;
+ try{if(lkMode==='create')await makeLocker(a);else ok=await openLocker(a)}catch(x){ok=false}
+ $('#lkb').textContent='Continue';
+ if(!ok){fails2++;if(fails2>=5){lock2=Date.now()+30000;fails2=0;e.textContent='Too many attempts. Please wait 30 seconds.'}else e.textContent='Wrong password. Please try again.';return}
+ fails2=0;const f=lkCb;lkCb=null;closeM('m-lk');render();if($('#adm').classList.contains('on'))admRender();if(f)f()};
+['lk1','lk2'].forEach(i=>$('#'+i).addEventListener('keydown',e=>{if(e.key==='Enter')$('#lkb').click()}));
+function openLockerView(){$('#lkv').classList.add('on');document.body.style.overflow='hidden';$('#lq').value='';renderLocker()}
+function closeLockerView(){$('#lkv').classList.remove('on');if(!$('#adm').classList.contains('on'))document.body.style.overflow='';render()}
+function renderLocker(){const q=$('#lq').value.trim(),all=L||[],l=all.filter(s=>!q||match(s,q));
+ $('#lkh').textContent=q?'Results for "'+q+'"':'Private Creations ('+all.length+')';
+ $('#lg').innerHTML=l.length?l.map(card).join(''):'<div class="empty">'+(all.length?'Nothing found. Try another search.':'The Locker is empty.')+'</div>'}
+$('#lq').addEventListener('input',renderLocker);
+$('#lkx').onclick=closeLockerView;
+$('#lkk').onclick=()=>{L=null;LK=null;closeLockerView();if($('#adm').classList.contains('on'))admRender();toast('Locker locked')};
+function showLocker(){if(L)openLockerView();else promptLocker('unlock',openLockerView)}
+function lockerTile(){const un=!!L;return'<div class="card"><div class="cv" style="background:linear-gradient(135deg,#2b1263,#8a2be2 60%,#ff5fb4)">'+ic('lock')+'</div><div class="cb"><span class="cat">Locked</span><h3>The Locker</h3><p>'+(un?'Unlocked. Your private creations are inside.':'Private creations live here. Enter the password to open.')+'</p><div class="row"><button data-lk="open">'+ic('lock')+(un?'Open Locker':'Unlock')+'</button></div></div></div>'}
+// ---------- home
+function card(s,i){const u=safeUrl(s.url),img=safeUrl(s.img),h=((s.name||'').length*47)%360;
+ return'<div class="card" style="animation-delay:'+Math.min(i,8)*.05+'s"><div class="cv" style="background:linear-gradient(135deg,hsl('+h+',70%,35%),hsl('+(h+70)%360+',70%,25%))"><span>'+esc((s.name||'?').charAt(0).toUpperCase())+'</span>'+(img?'<img src="'+esc(img)+'" alt="" loading="lazy" referrerpolicy="no-referrer">':'')+'</div><div class="cb"><span class="cat">'+esc(s.cat)+'</span><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><div class="tags">'+(s.tags||[]).map(t=>'<span>#'+esc(t)+'</span>').join('')+'</div><div class="dt">'+ic('cal')+esc(s.date||'')+'</div><div class="row"><button class="sec" data-pv="'+esc(s.id)+'">'+ic('eye')+'Preview</button><a class="btn" href="'+esc(u)+'" target="_blank" rel="noopener">Visit'+'<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a></div></div></div>'}
+function match(s,q){q=q.toLowerCase();return[s.name,s.desc,s.cat].concat(s.tags||[]).join(' ').toLowerCase().indexOf(q)>-1}
+function render(){
+ const q=$('#q').value.trim(),sq=q&&q.charAt(0)!=='@'?q:'';
+ $('#stat').innerHTML=ic('star')+D.sites.length+' website'+(D.sites.length==1?'':'s')+' | '+D.cats.length+' categories';
+ $('#chips').innerHTML=['All'].concat(D.cats).map(c=>'<button class="chip '+(c===cur?'on':'')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join('');
+ const l=D.sites.filter(s=>(cur==='All'||s.cat===cur)&&(!sq||match(s,sq)));
+ $('#gt').textContent=sq?'Results for "'+sq+'"':(cur==='All'?'All Creations':cur);
+ const tile=(cur==='All'&&!sq&&hasLk())?lockerTile():'';
+ $('#grid').innerHTML=(l.length||tile)?tile+l.map(card).join(''):'<div class="empty">'+(D.sites.length?'Nothing found. Try another search.':'No websites here yet. New stars are coming soon...')+'</div>';
+ const r=D.sites.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,3);
+ $('#rc').classList.toggle('hide',!r.length||!!sq);$('#rg').innerHTML=r.map(card).join('');
+}
+function runSearch(){
+ const v=$('#q').value.replace(/\s+/g,'').toLowerCase();
+ if(v==='@admin'){$('#q').value='';render();openAdmin();return}
+ if(v==='@password'&&!hasPw()){$('#q').value='';render();openM('m-setup');setTimeout(()=>$('#sp1').focus(),100);return}
+ render()}
+$('#sf').addEventListener('submit',e=>{e.preventDefault();runSearch()});
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();runSearch()}});
+$('#q').addEventListener('input',render);
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-cat],[data-pv],[data-close],[data-eye],[data-lk]');if(!t)return;
+ if(t.dataset.cat!==undefined){cur=t.dataset.cat;render()}
+ else if(t.dataset.lk){showLocker()}
+ else if(t.dataset.pv){const s=D.sites.concat(L||[]).find(x=>x.id===t.dataset.pv);if(!s)return;const u=safeUrl(s.url);$('#pt').textContent=s.name;$('#po').href=u;$('#pf').src=u;openM('m-pv')}
+ else if(t.dataset.close){closeM(t.dataset.close)}
+ else if(t.dataset.eye){const i=$('#'+t.dataset.eye);i.type=i.type==='password'?'text':'password';t.textContent=i.type==='password'?'Show':'Hide'}
+});
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.closest('.cv'))t.remove()},true);
+document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if($('#m-conf').classList.contains('on'))return closeM('m-conf');const o=$$('.ov.on').pop();if(o)return closeM(o.id);if($('#lkv').classList.contains('on'))closeLockerView()});
+// ---------- admin access
+function openAdmin(){
+ if(!hasPw()){toast('No admin password yet. Type @password in the search bar to create one.','err');return}
+ if(sessOk()){showAdm();return}
+ $('#lp').value='';$('#le').textContent='';openM('m-login');setTimeout(()=>$('#lp').focus(),100)}
+$('#sb').onclick=async()=>{if(noCrypto())return;const a=$('#sp1').value,b=$('#sp2').value,e=$('#se');
+ if(!a||!b)return e.textContent='Password cannot be empty.';if(a.length<6)return e.textContent='At least 6 characters are required.';if(a!==b)return e.textContent='The two passwords do not match.';
+ e.textContent='';$('#sb').textContent='Saving...';
+ try{await setPw(a)}catch(x){$('#sb').textContent='Save Password';return e.textContent='Could not save the password in this browser.'}
+ $('#sb').textContent='Save Password';$('#sp1').value=$('#sp2').value='';closeM('m-setup');touch();toast('Password created. Welcome!');showAdm()};
+$('#lb').onclick=async()=>{if(noCrypto())return;const e=$('#le');
+ if(Date.now()<lockUntil)return e.textContent='Too many attempts. Try again in '+Math.ceil((lockUntil-Date.now())/1000)+' seconds.';
+ $('#lb').textContent='Checking...';const ok=await chk($('#lp').value);$('#lb').textContent='Login';
+ if(ok){fails=0;touch();closeM('m-login');showAdm();toast('Welcome back')}
+ else{fails++;if(fails>=5){lockUntil=Date.now()+30000;fails=0;e.textContent='Too many attempts. Please wait 30 seconds.'}else e.textContent='Wrong password. Please try again.'}};
+$('#lp').addEventListener('keydown',e=>{if(e.key==='Enter')$('#lb').click()});
+function showAdm(){$('#adm').classList.add('on');document.body.style.overflow='hidden';admRender();ghFill()}
+function hideAdm(){$('#adm').classList.remove('on');document.body.style.overflow='';render()}
+$('#ax').onclick=hideAdm;
+$('#lo').onclick=()=>{sessionStorage.removeItem(SS);hideAdm();toast('Logged out')};
+setInterval(()=>{if($('#adm').classList.contains('on')&&!sessOk()){hideAdm();toast('Session expired. Please log in again.','err')}},15000);
+['click','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,()=>{if($('#adm').classList.contains('on'))touch()},{passive:true}));
+$('#tabs').onclick=e=>{const b=e.target.closest('[data-p]');if(b)goTab(b.dataset.p)};
+function goTab(p){$$('#tabs button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));$$('.pn').forEach(x=>x.classList.toggle('on',x.id===p))}
+// ---------- admin render
+function admRender(){
+ $('#ac').textContent='Open websites: '+D.sites.length+(L?' | Locked websites: '+L.length:(hasLk()?' | Locker: locked':''));
+ $('#al').innerHTML=D.sites.length?D.sites.map(s=>'<div class="li"><div class="n"><b>'+esc(s.name)+'</b> <span class="cat">'+esc(s.cat)+'</span><small>'+esc(s.url)+'</small></div><div class="row"><button data-e="'+esc(s.id)+'">Edit</button><button class="dg" data-d="'+esc(s.id)+'">Delete</button></div></div>').join(''):'<p style="color:var(--m);margin-top:10px">No websites yet. Use the "Add / Edit" tab to add one.</p>';
+ const keep=$('#fc').value;$('#fc').innerHTML=D.cats.map(c=>'<option>'+esc(c)+'</option>').join('');if(D.cats.indexOf(keep)>-1)$('#fc').value=keep;
+ $('#cl').innerHTML=D.cats.map((c,i)=>'<div class="li"><input data-ci="'+i+'" value="'+esc(c)+'" style="flex:2;min-width:120px"><div class="row"><button data-cr="'+i+'">Rename</button><button class="dg" data-cd="'+i+'">Delete</button></div></div>').join('');
+ if(!editId&&!$('#fn').value&&!$('#fu').value)$('#fe').value=$('#fe').value||today();
+ admLocker();
+}
+function formClear(silent){editId=null;$('#fv').value='open';['fn','fu','fd','fi','fg'].forEach(i=>{$('#'+i).value=''});$('#fe').value=today();$('#ft').textContent='Add New Website';$('#fr').textContent='';if(!silent)toast('Form cleared')}
+$('#fx').onclick=()=>formClear();
+$('#fs').onclick=()=>{
+ const n=$('#fn').value.trim(),u=safeUrl($('#fu').value),e=$('#fr'),im=$('#fi').value.trim();
+ if(!n)return e.textContent='Website name is required.';
+ if(!u)return e.textContent='Enter a valid URL (starting with https://).';
+ if(im&&!safeUrl(im))return e.textContent='Cover image URL is not valid.';
+ if(!D.cats.length)return e.textContent='Create a category first.';
+ const locked=$('#fv').value==='locked';
+ const o={id:editId||'w'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),name:n,url:u,desc:$('#fd').value.trim(),cat:$('#fc').value||D.cats[0],img:im?safeUrl(im):'',date:$('#fe').value||today(),tags:$('#fg').value.split(',').map(x=>x.trim().replace(/^#/,'')).filter(Boolean)};
+ const go=async()=>{
+  const up=arr=>{const i=arr.findIndex(x=>x.id===o.id);if(i>-1)arr[i]=o;else arr.unshift(o)};
+  const was=D.sites.some(x=>x.id===o.id)||!!(L&&L.some(x=>x.id===o.id));
+  if(locked){D.sites=D.sites.filter(x=>x.id!==o.id);up(L)}else{if(L)L=L.filter(x=>x.id!==o.id);up(D.sites)}
+  await persist();toast(was?'Website updated':(locked?'Website added to the Locker':'Website added'));formClear(true);admRender();render();goTab(locked?'p6':'p1')};
+ if(locked)ensureLocker(go);else if(editId&&hasLk()&&!L)needLocker(go);else go()};
+function editSite(s,v){editId=s.id;$('#fn').value=s.name;$('#fu').value=s.url;$('#fd').value=s.desc||'';$('#fc').value=s.cat;$('#fv').value=v;$('#fi').value=s.img||'';$('#fe').value=s.date||today();$('#fg').value=(s.tags||[]).join(', ');$('#ft').textContent='Edit Website';$('#fr').textContent='';goTab('p2')}
+$('#al').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.e){const s=D.sites.find(x=>x.id===b.dataset.e);if(s)editSite(s,'open')}
+ if(b.dataset.d){const s=D.sites.find(x=>x.id===b.dataset.d);if(!s)return;ask('Delete "'+s.name+'"?',async()=>{D.sites=D.sites.filter(x=>x.id!==s.id);if(editId===s.id)formClear(true);await persist();admRender();render();toast('Deleted')})}};
+function admLocker(){const h=hasLk();
+ $('#lst').textContent=!h?'No Locker yet. Create one here, or choose "Locked" when adding a website.':(L?'The Locker is unlocked on this device.':'The Locker exists and is locked. Unlock it to manage private websites.');
+ $('#lkc').classList.toggle('hide',h);$('#lku').classList.toggle('hide',!h||!!L);$('#lkl').classList.toggle('hide',!L);
+ const note=t=>'<p style="color:var(--m);margin-top:8px;font-size:.85rem">'+t+'</p>';
+ $('#ll').innerHTML=!L?note(h?'Unlock the Locker to see the locked websites.':'Nothing here yet.'):(L.length?L.map(x=>'<div class="li"><div class="n"><b>'+esc(x.name)+'</b> <span class="cat">'+esc(x.cat)+'</span><small>'+esc(x.url)+'</small></div><div class="row"><button data-le="'+esc(x.id)+'">Edit</button><button class="dg" data-ld="'+esc(x.id)+'">Delete</button></div></div>').join(''):note('The Locker is empty.'))}
+$('#lkc').onclick=()=>promptLocker('create',async()=>{await persist();toast('Locker created');admRender();render()});
+$('#lku').onclick=()=>promptLocker('unlock',()=>{admRender();render()});
+$('#lkl').onclick=()=>{L=null;LK=null;admRender();render();toast('Locker locked')};
+$('#ll').onclick=e=>{const b=e.target.closest('button');if(!b||!L)return;
+ if(b.dataset.le){const x=L.find(y=>y.id===b.dataset.le);if(x)editSite(x,'locked')}
+ if(b.dataset.ld){const x=L.find(y=>y.id===b.dataset.ld);if(!x)return;ask('Delete "'+x.name+'"?',async()=>{L=L.filter(y=>y.id!==x.id);if(editId===x.id)formClear(true);await persist();admRender();render();toast('Deleted')})}};
+$('#lcb').onclick=async()=>{if(noCrypto())return;const e=$('#lce'),a=$('#lc0').value,b=$('#lc1').value,c=$('#lc2').value;
+ if(!hasLk())return e.textContent='There is no Locker yet.';
+ if(!await openLocker(a))return e.textContent='Current locker password is wrong.';
+ if(b.length<6)return e.textContent='New password must be at least 6 characters.';if(b!==c)return e.textContent='New passwords do not match.';
+ LSALT=crypto.getRandomValues(new Uint8Array(16));LK=await dKey(b,LSALT);await persist();e.textContent='';$('#lc0').value=$('#lc1').value=$('#lc2').value='';admRender();toast('Locker password changed')};
+$('#lkr').onclick=()=>{if(!hasLk())return toast('There is no Locker to reset','err');ask('Delete the Locker and ALL locked websites? This cannot be undone.',()=>{D.locker=null;L=null;LK=null;LSALT=null;save();admRender();render();toast('Locker deleted')})};
+$('#cy').onclick=()=>{closeM('m-conf');const f=onYes;onYes=null;if(f)f()};
+// ---------- categories
+$('#na').onclick=()=>{const v=$('#nc').value.trim();if(!v)return toast('Enter a category name','err');if(D.cats.some(c=>c.toLowerCase()===v.toLowerCase()))return toast('This category already exists','err');D.cats.push(v);$('#nc').value='';save();admRender();render();toast('Category added')};
+$('#cl').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.cr!==undefined){const i=+b.dataset.cr,old=D.cats[i],nv=$('[data-ci="'+i+'"]').value.trim();if(!nv)return toast('Name cannot be empty','err');if(nv===old)return;if(D.cats.some((c,j)=>j!==i&&c.toLowerCase()===nv.toLowerCase()))return toast('This name already exists','err');
+  needLocker(async()=>{D.cats[i]=nv;D.sites.forEach(x=>{if(x.cat===old)x.cat=nv});if(L)L.forEach(x=>{if(x.cat===old)x.cat=nv});if(cur===old)cur=nv;await persist();admRender();render();toast('Category renamed')})}
+ if(b.dataset.cd!==undefined){const i=+b.dataset.cd,old=D.cats[i];ask('Delete "'+old+'"? Its websites will move to another category.',()=>needLocker(async()=>{D.cats.splice(i,1);if(!D.cats.length)D.cats.push('General');D.sites.forEach(x=>{if(x.cat===old)x.cat=D.cats[0]});if(L)L.forEach(x=>{if(x.cat===old)x.cat=D.cats[0]});if(cur===old)cur='All';await persist();admRender();render();toast('Category deleted')}))}};
+// ---------- password change
+$('#cpb').onclick=async()=>{if(noCrypto())return;const e=$('#cpe'),a=$('#cp0').value,b=$('#cp1').value,c=$('#cp2').value;
+ if(!await chk(a))return e.textContent='Current password is wrong.';if(b.length<6)return e.textContent='New password must be at least 6 characters.';if(b!==c)return e.textContent='New passwords do not match.';
+ await setPw(b);e.textContent='';$('#cp0').value=$('#cp1').value=$('#cp2').value='';toast('Password changed')};
+// ---------- backup
+$('#ex').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='my-digital-universe-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);toast('Backup downloading')};
+$('#im').onclick=()=>$('#imf').click();
+$('#imf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);
+ if(!valid(d))throw 0;
+ const sites=d.sites.map(s=>{if(!s||typeof s.name!=='string'||!s.name.trim()||!safeUrl(s.url))throw 0;return{id:String(s.id||'w'+Math.random().toString(36).slice(2,9)),name:s.name,url:safeUrl(s.url),desc:String(s.desc||''),cat:String(s.cat||'General'),img:safeUrl(s.img)||'',date:String(s.date||today()),tags:Array.isArray(s.tags)?s.tags.map(String):[]}});
+ const cats=Array.from(new Set(d.cats.map(String).concat(sites.map(s=>s.cat))));if(!cats.length)cats.push('General');
+ ask('Import '+sites.length+' open websites? Current data, including the Locker, will be replaced.',()=>{D={sites:sites,cats:cats,updated:0,locker:(d.locker&&typeof d.locker.s==='string'&&typeof d.locker.iv==='string'&&typeof d.locker.ct==='string')?{v:1,s:d.locker.s,iv:d.locker.iv,ct:d.locker.ct}:null};L=null;LK=null;save();admRender();render();toast('Import complete')})}catch(x){toast('Invalid JSON file','err')}e.target.value=''};r.readAsText(f)};
+// ---------- PWA
+let dp=null;const inst=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
+addEventListener('appinstalled',()=>{dp=null;updI();toast('App installed')});
+function updI(){if(inst()){const b=$('#ib');if(b)b.outerHTML='<span id="ib" style="color:var(--m);font-size:.85rem">'+ic('check')+'App is installed</span>'}}
+$('#ib').onclick=async()=>{if(inst())return;if(dp){dp.prompt();const c=await dp.userChoice;dp=null;if(c.outcome==='accepted')toast('Installing...');return}
+ const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+ $('#it').innerHTML=ios?'In Safari, tap the <b>Share</b> button, choose <b>Add to Home Screen</b>, then tap <b>Add</b>.':'In Chrome, open the browser menu (three dots), choose <b>Install app</b> or <b>Add to Home screen</b>, then tap <b>Install</b>. The site must be opened over HTTPS, for example on GitHub Pages.';openM('m-ih')};
+updI();
+if('serviceWorker'in navigator){addEventListener('load',()=>{const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('service-worker.js').catch(()=>{});let rl=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}})})}
+// ---------- stars
+(function(){const c=$('#stars'),x=c.getContext('2d');let S=[];function sz(){c.width=innerWidth;c.height=innerHeight;S=Array.from({length:Math.min(90,Math.floor(innerWidth/8))},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.3,p:Math.random()*6}))}
+function f(t){x.clearRect(0,0,c.width,c.height);S.forEach(s=>{x.globalAlpha=.3+.7*Math.abs(Math.sin(t/1500+s.p));x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()});requestAnimationFrame(f)}
+sz();addEventListener('resize',sz);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(f)})();
+// ---------- init
+$('#yr').textContent=new Date().getFullYear();$('#fe').value=today();render();pull();
+</script>
+</body>
+</html>
