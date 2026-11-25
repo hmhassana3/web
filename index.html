@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>My Digital Universe</title>
-<meta name="theme-color" content="#0b0620">
+<meta name="theme-color" content="#09041c">
 <meta name="color-scheme" content="dark">
+<script>try{var d=matchMedia('(display-mode: standalone)').matches||navigator.standalone;if(d&&localStorage.getItem('dus_intro')!=='0'&&!sessionStorage.getItem('dus_intro')){document.documentElement.className+=' intro';sessionStorage.setItem('dus_intro','1')}}catch(e){}</script>
 <meta name="description" content="My Digital Universe - all my websites in one place">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -305,10 +306,94 @@ input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3
  .lib{padding:24px 16px 0}.fi{padding:0 16px;justify-content:center;text-align:center}
  .ltabs{gap:6px}.lt{padding:8px 12px;gap:5px;font-size:.85rem}
 }
+/* settings page */
+#setc{margin-top:22px}
+.sc{border:1px solid var(--gb);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));padding:18px 20px;margin-bottom:18px}
+.sc>h3{display:flex;align-items:center;font-size:1.05rem;margin-bottom:4px}
+.sd{color:var(--m);font-size:.86rem;margin:2px 0 12px}
+.srow{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:6px 0}
+.srow b{display:block;font-size:.98rem}
+.srow small{display:block;color:var(--m);font-size:.8rem;margin-top:2px}
+.swt{flex:none;position:relative;width:52px;height:30px;min-height:30px;padding:0;border-radius:30px;background:rgba(255,255,255,.14);border:1px solid var(--gb);box-shadow:none;transition:background .2s}
+.swt::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s}
+.swt[aria-checked=true]{background:var(--grad)}
+.swt[aria-checked=true]::after{transform:translateX(22px)}
+.swt:hover{transform:none;box-shadow:none}
+.swt[aria-disabled=true]{opacity:.4;cursor:not-allowed}
+.meter{height:10px;border-radius:10px;background:rgba(255,255,255,.1);overflow:hidden;margin:10px 0 6px}
+.meter i{display:block;height:100%;min-width:2px;background:var(--grad);border-radius:10px}
+.sbt{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.sbt .sec,.sa .sec{min-height:38px;padding:6px 16px;font-size:.84rem}
+.sx{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--gb)}
+.tn.cv{width:60px;height:60px;aspect-ratio:auto;border-radius:14px;flex:none;font-size:1.4rem}
+.si{flex:1;min-width:0}
+.si b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.si small{display:block;color:var(--m);font-size:.78rem;margin-top:1px}
+.si small.ok{color:#7ee2a8}
+.sa{display:flex;align-items:center;gap:10px;flex:none}
+.sw{color:#ffd37a;font-size:.8rem;margin-top:8px}
+@media(max-width:520px){.sc{padding:16px 14px}.sx{flex-wrap:wrap}.sa{width:100%;justify-content:space-between;padding-left:72px}}
+/* Recently Added on phones: compact full-width rows, photo left (about half), details right. Laptop layout is untouched. */
+@media(max-width:639px){
+ .g3{gap:10px;margin-inline:calc(50% - 50vw)}
+ .g3 .card{display:grid;grid-template-columns:46% minmax(0,1fr);border-radius:0;border-left:0;border-right:0;min-height:150px;box-shadow:none}
+ .g3 .card:hover{transform:none}
+ .g3 .cv{aspect-ratio:auto;height:100%;min-height:150px;grid-row:1}
+ .g3 .cv>.i{width:40px;height:40px}
+ .g3 .cb{padding:10px 14px 10px 12px;gap:6px;justify-content:center}
+ .g3 .cb h3{font-size:1rem;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+ .g3 .cb p{font-size:.8rem;min-height:0;flex:0 1 auto;-webkit-line-clamp:2}
+ .g3 .cat{font-size:.66rem;padding:2px 9px}
+ .g3 .dtm{font-size:.68rem}
+ .g3 .row{margin-top:2px;gap:8px;flex-wrap:nowrap}
+ .g3 .card .row>*{min-height:40px;padding:8px 10px;font-size:.82rem;flex:1 1 0;min-width:0;justify-content:center}
+ .g3 .card .row .i{margin-right:.3em}
+ .g3 .qa{top:8px;right:auto;left:8px;flex-direction:column;gap:6px}
+ .g3 .qb{width:34px;height:34px;min-height:34px}
+ .g3 .qb .i{width:16px;height:16px}
+ .g3 .fl{top:auto;bottom:8px;left:8px;max-width:calc(46% - 16px)}
+ .g3 .fl span{font-size:.62rem;padding:2px 8px}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.fd{filter:none!important;transform:none!important}}
+/* app-open intro (installed app only): "My Digital Universe" is written, glides down, the universe appears, a short loading bar, then the app */
+#splash{display:none;position:fixed;inset:0;z-index:300;background:#09041c;overflow:hidden;color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html.intro #splash{display:block;animation:spOut .45s ease 4.5s forwards}
+html.intro,html.intro body{overflow:hidden}
+html.out #splash{animation:none!important;opacity:0;transition:opacity .28s}
+@keyframes spOut{to{opacity:0;visibility:hidden;transform:scale(1.04)}}
+.sp-bg{position:absolute;inset:0;background:radial-gradient(60% 45% at 50% 42%,rgba(124,58,255,.38),transparent 70%),radial-gradient(40% 30% at 18% 88%,rgba(79,124,255,.22),transparent 70%),radial-gradient(40% 30% at 86% 8%,rgba(255,122,217,.16),transparent 70%)}
+.sp-st{position:absolute;inset:0;opacity:0;animation:spIn 1s ease .1s forwards;background:radial-gradient(1.6px 1.6px at 12% 18%,#fff,transparent),radial-gradient(1.2px 1.2px at 28% 64%,#cdb8ff,transparent),radial-gradient(1.8px 1.8px at 44% 9%,#fff,transparent),radial-gradient(1.2px 1.2px at 63% 31%,#fff,transparent),radial-gradient(1.6px 1.6px at 81% 72%,#bcd0ff,transparent),radial-gradient(1.2px 1.2px at 92% 22%,#fff,transparent),radial-gradient(1.4px 1.4px at 7% 82%,#fff,transparent),radial-gradient(1.2px 1.2px at 55% 88%,#d9c8ff,transparent),radial-gradient(1.8px 1.8px at 72% 52%,#fff,transparent),radial-gradient(1.2px 1.2px at 36% 38%,#fff,transparent)}
+.sp-st2{background-position:37px 53px;background-size:80% 80%;animation:spIn 1s ease .1s forwards,spTw 2.4s ease-in-out 1s infinite alternate}
+@keyframes spIn{to{opacity:1}}
+@keyframes spTw{from{opacity:.25}to{opacity:.9}}
+.sp-name{position:absolute;left:50%;top:50%;width:min(86vw,520px);transform:translate(-50%,-50%);animation:spName .9s cubic-bezier(.65,0,.25,1) 2.55s forwards;z-index:2}
+@keyframes spName{to{top:90%;transform:translate(-50%,-50%) scale(.36)}}
+.sp-name svg{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 0 16px rgba(162,77,255,.75))}
+.sp-name text{font:italic 600 100px "Snell Roundhand","Segoe Script","Lucida Handwriting","Brush Script MT",cursive,Georgia,serif}
+.sp-nw{fill:none;stroke:#e4d8ff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:760;stroke-dashoffset:760;animation:spWr 1.55s ease-in-out .4s forwards}
+.sp-nf{fill:url(#spg);opacity:0;animation:spIn .7s ease 1.75s forwards}
+@keyframes spWr{to{stroke-dashoffset:0}}
+.sp-sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding-bottom:9vh;opacity:0;transform:scale(.92);animation:spSc 1s cubic-bezier(.2,.7,.2,1) 3s forwards}
+@keyframes spSc{to{opacity:1;transform:none}}
+.sp-art{width:min(72vw,400px);animation:spFl 4.5s ease-in-out infinite}
+.sp-art img{width:100%;height:auto;display:block;-webkit-mask-image:radial-gradient(closest-side,#000 68%,transparent);mask-image:radial-gradient(closest-side,#000 68%,transparent)}
+@keyframes spFl{50%{transform:translateY(-8px)}}
+.sp-t{font-size:clamp(1rem,4.4vw,1.35rem);font-weight:600;letter-spacing:.4px;text-align:center;color:#d9ccff}
+.sp-ld{position:absolute;left:50%;bottom:21%;width:min(52vw,220px);height:4px;border-radius:4px;background:rgba(255,255,255,.14);transform:translateX(-50%);opacity:0;animation:spIn .4s ease 3.5s forwards}
+.sp-ld i{display:block;height:100%;width:0;border-radius:4px;background:var(--grad);box-shadow:0 0 12px rgba(139,92,246,.8);animation:spBar 1s cubic-bezier(.4,0,.2,1) 3.5s forwards}
+@keyframes spBar{to{width:100%}}
+.sp-sk{position:absolute;top:max(14px,env(safe-area-inset-top));right:16px;font-size:.72rem;color:rgba(255,255,255,.45);opacity:0;animation:spIn .5s ease 1s forwards}
+@media(prefers-reduced-motion:reduce){html.intro #splash{animation:spOutR .3s ease 1s forwards}@keyframes spOutR{to{opacity:0;visibility:hidden}}.sp-name{top:50%;transform:translate(-50%,-50%)}.sp-nw{stroke-dashoffset:0}.sp-nf{opacity:1}.sp-sc,.sp-ld,.sp-sk{display:none}}
 </style>
 </head>
 <body>
+<div id="splash" aria-hidden="true">
+ <div class="sp-bg"></div><div class="sp-st"></div><div class="sp-st sp-st2"></div>
+ <div class="sp-sc"><div class="sp-art"><picture><source media="(max-width:640px)" srcset="hero-m.webp"><img src="hero-d.webp" alt="" decoding="async"></picture></div><div class="sp-t">Every website is a star</div></div>
+ <div class="sp-ld"><i></i></div>
+ <div class="sp-name"><svg viewBox="0 0 600 250" role="img" focusable="false"><defs><linearGradient id="spg" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d9c8ff"/><stop offset="1" stop-color="#9db8ff"/></linearGradient></defs><text class="sp-nf" text-anchor="middle"><tspan x="300" y="105">My Digital</tspan><tspan x="300" y="220">Universe</tspan></text><text class="sp-nw" text-anchor="middle"><tspan x="300" y="105">My Digital</tspan><tspan x="300" y="220">Universe</tspan></text></svg></div>
+ <div class="sp-sk">Tap to skip</div>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.6L6 22l1.5-7.2L2 10l7.1-1.1z"/></symbol>
 <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
@@ -336,6 +421,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3
 <symbol id="i-undo" viewBox="0 0 24 24"><path d="M1 4v6h6M3.5 15a9 9 0 1 0 2.1-9.4L1 10"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
 </svg>
 <canvas id="stars"></canvas>
 
@@ -344,7 +430,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3
  <nav class="nl" aria-label="Main">
   <a href="#home" data-nav="home" data-sec="home">Home</a><a href="#creations" data-nav="creations" data-sec="creations">All Creations</a><a href="#recent" data-nav="recent" data-sec="recent">Recently Added</a><a href="#categories" data-nav="categories" data-sec="categories">Categories</a>
   <span class="sep" aria-hidden="true"></span>
-  <a href="#/favourites" data-nav="favourites">Favourites<em class="bdg hide" data-bdg="fav"></em></a><a href="#/pinned" data-nav="pinned">Pinned<em class="bdg hide" data-bdg="pin"></em></a><a href="#/archive" data-nav="archive">Archive<em class="bdg hide" data-bdg="arc"></em></a>
+  <a href="#/favourites" data-nav="favourites">Favourites<em class="bdg hide" data-bdg="fav"></em></a><a href="#/pinned" data-nav="pinned">Pinned<em class="bdg hide" data-bdg="pin"></em></a><a href="#/archive" data-nav="archive">Archive<em class="bdg hide" data-bdg="arc"></em></a><a href="#/settings" data-nav="settings">Settings</a>
   <button type="button" class="sec ib" id="ns" aria-label="Search websites" title="Search"><svg class="i"><use href="#i-search"/></svg></button>
  </nav>
  <button type="button" class="sec ib hb" id="hb" aria-label="Open menu" aria-expanded="false" aria-controls="mp"><svg class="i a"><use href="#i-menu"/></svg><svg class="i b"><use href="#i-x"/></svg></button>
@@ -359,6 +445,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3
  <a href="#/favourites" data-nav="favourites"><svg class="i"><use href="#i-heart"/></svg>Favourites<em class="bdg hide" data-bdg="fav"></em></a>
  <a href="#/pinned" data-nav="pinned"><svg class="i"><use href="#i-pin"/></svg>Pinned<em class="bdg hide" data-bdg="pin"></em></a>
  <a href="#/archive" data-nav="archive"><svg class="i"><use href="#i-archive"/></svg>Archive<em class="bdg hide" data-bdg="arc"></em></a>
+ <a href="#/settings" data-nav="settings"><svg class="i"><use href="#i-gear"/></svg>Settings</a>
  <button type="button" class="sec cl" id="mc"><svg class="i"><use href="#i-x"/></svg>Close menu</button>
 </nav>
 
@@ -408,6 +495,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 3
  <div class="ltabs" id="lbtabs" aria-label="Library pages"></div>
  <div class="grid" id="lbg"></div>
  <p class="lnote">Saved in this browser only. Your website list is never changed or deleted from here.</p>
+</section>
+
+<section id="set" class="wrap lib hide" aria-labelledby="stt">
+ <div class="lh"><div><h2 class="t" id="stt"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg>Settings</h2><p class="ldd">Offline websites, phone storage and the app-open intro. Saved in this browser only. Your website list is never changed from here.</p></div>
+  <div class="lact"><a class="btn sec" href="#home" data-sec="home"><svg class="i"><use href="#i-home"/></svg>Home</a></div></div>
+ <div id="setc"></div>
 </section>
 </main>
 
@@ -636,18 +729,18 @@ function cover(s,cls,lazy){const img=safeUrl(s.img),h=hue(s),u=esc(img),a=lazy?'
 function qa(s){const id=esc(s.id),f=has('fav',s.id),p=has('pin',s.id),a=has('arc',s.id);
  const b=(k,on,ico,t1,t2)=>'<button type="button" class="qb'+(on?' on':'')+'" data-'+k+'="'+id+'" aria-pressed="'+on+'" aria-label="'+(on?t2:t1)+'" title="'+(on?t2:t1)+'">'+ic(ico)+'</button>';
  return'<div class="qa">'+b('fav',f,'heart','Add to favourites','Remove from favourites')+b('pin',p,'pin','Pin to top','Unpin')+b('arc',a,a?'undo':'archive','Move to archive','Restore from archive')+'</div>'}
-function card(s,lk){const u=safeUrl(s.url),P0=paras(s.desc),pn=!lk&&has('pin',s.id),ar=!lk&&has('arc',s.id);
+function card(s,lk){const u=lk?safeUrl(s.url):openUrl(s),vs=lk?'':' data-vs="'+esc(s.id)+'"',P0=paras(s.desc),pn=!lk&&has('pin',s.id),ar=!lk&&has('arc',s.id),od=!lk&&offReady(s);
  return'<article class="card'+(pn?' pinned':'')+'" data-dt="'+esc(s.id)+'">'+cover(s,'',true)
- +(pn||ar?'<div class="fl">'+(pn?'<span>'+ic('pin')+'Pinned</span>':'')+(ar?'<span>'+ic('archive')+'Archived</span>':'')+'</div>':'')
+ +(pn||ar||od?'<div class="fl">'+(pn?'<span>'+ic('pin')+'Pinned</span>':'')+(ar?'<span>'+ic('archive')+'Archived</span>':'')+(od?'<span>'+ic('down')+'Offline ready</span>':'')+'</div>':'')
  +(lk?'':qa(s))
- +'<div class="cb"><div class="mt"><span class="cat">'+esc(s.cat)+'</span>'+(s.date?'<span class="dtm">'+ic('cal')+esc(fmtDate(s.date))+'</span>':'')+'</div><h3><button type="button" class="lnk" data-dt="'+esc(s.id)+'" title="View full details">'+esc(s.name)+'</button></h3><p'+(/[\u0600-\u06FF]/.test(P0[0]||'')?' dir="auto"':'')+'>'+esc(P0[0]||'')+'</p><div class="row"><button class="sec" data-pv="'+esc(s.id)+'">'+ic('eye')+'Preview</button><a class="btn" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">Visit<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a></div></div></article>'}
-function detail(s){const u=safeUrl(s.url),P0=paras(s.desc),T=tagList(s),lk=isLocked(s.id),id=esc(s.id);
+ +'<div class="cb"><div class="mt"><span class="cat">'+esc(s.cat)+'</span>'+(s.date?'<span class="dtm">'+ic('cal')+esc(fmtDate(s.date))+'</span>':'')+'</div><h3><button type="button" class="lnk" data-dt="'+esc(s.id)+'" title="View full details">'+esc(s.name)+'</button></h3><p'+(/[\u0600-\u06FF]/.test(P0[0]||'')?' dir="auto"':'')+'>'+esc(P0[0]||'')+'</p><div class="row"><button class="sec" data-pv="'+esc(s.id)+'">'+ic('eye')+'Preview</button><a class="btn" href="'+esc(u)+'"'+vs+' target="_blank" rel="noopener noreferrer">Visit<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a></div></div></article>'}
+function detail(s){const u=safeUrl(s.url),vu=openUrl(s),P0=paras(s.desc),T=tagList(s),lk=isLocked(s.id),id=esc(s.id);
  const tb=(k,on,a,b,ico)=>'<button type="button" class="sec tgb'+(on?' on':'')+'" data-'+k+'="'+id+'" aria-pressed="'+on+'">'+ic(ico)+(on?b:a)+'</button>';
  return cover(s,'dcv',false)+'<div class="db"><div class="mt"><span class="cat">'+esc(s.cat)+'</span>'+(s.date?'<span class="dtm">'+ic('cal')+esc(fmtDate(s.date))+'</span>':'')+'</div><h3 id="dtn">'+esc(s.name)+'</h3>'
  +(P0.length?'<div class="dd">'+P0.map(p=>'<p'+(/[\u0600-\u06FF]/.test(p)?' lang="ur" dir="rtl"':'')+'>'+esc(p)+'</p>').join('')+'</div>':'')
  +(T.length?'<div class="tg">'+T.map(t=>'<span>#'+esc(t)+'</span>').join('')+'</div>':'')
  +'<dl class="inf"><div><dt>Category</dt><dd>'+esc(s.cat)+'</dd></div><div><dt>Date added</dt><dd>'+esc(s.date?fmtDate(s.date):'-')+'</dd></div><div class="w"><dt>Website</dt><dd><a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(u)+'</a></dd></div></dl>'
- +'<div class="row act"><button class="sec" data-pv="'+esc(s.id)+'">'+ic('eye')+'Preview</button><a class="btn" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">Visit<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a><button class="sec" data-cp="'+esc(s.id)+'">'+ic('copy')+'Copy link</button></div>'
+ +'<div class="row act"><button class="sec" data-pv="'+esc(s.id)+'">'+ic('eye')+'Preview</button><a class="btn" href="'+esc(vu)+'" data-vs="'+id+'" target="_blank" rel="noopener noreferrer">Visit<svg class="i" style="margin:0 0 0 .4em"><use href="#i-ext"/></svg></a><button class="sec" data-cp="'+esc(s.id)+'">'+ic('copy')+'Copy link</button>'+(lk?'':'<button class="sec" data-sh="'+esc(s.id)+'">'+ic('ext')+'Share</button>')+'</div>'
  +(lk?'':'<div class="row act2">'+tb('fav',has('fav',s.id),'Favourite','Favourited','heart')+tb('pin',has('pin',s.id),'Pin to top','Pinned','pin')+(has('arc',s.id)?tb('arc',true,'','Restore','undo'):tb('arc',false,'Archive','','archive'))+'</div>')+'</div>'}
 function openDetail(id,from){const s=findSite(id);if(!s)return;lastF=from||null;dtId=id;$('#dtc').innerHTML=detail(s);openM('m-dt');$('#m-dt .box').scrollTop=0;setTimeout(()=>{const b=$('#m-dt .xb');if(b)b.focus({preventScroll:true})},50)}
 function refreshDetail(id){const s=findSite(id);if(!s)return;const b=$('#m-dt .box'),t=b.scrollTop;$('#dtc').innerHTML=detail(s);b.scrollTop=t}
@@ -671,7 +764,9 @@ function render(){
  const r=vis.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,3),showR=!!r.length&&!sq;
  $('#recent').classList.toggle('hide',!showR);$('#rg').innerHTML=r.map(s=>card(s)).join('');
  $$('[data-nav="recent"]').forEach(a=>a.classList.toggle('hide',!showR));
- if(view!=='home')renderLib();
+ if(view==='settings')renderSet();else if(view!=='home')renderLib();
+ schedCfg();
+ if(pendSite)openPend();
  queueMeasure();
 }
 function renderLib(){const c=LIBS[view];if(!c)return;
@@ -694,13 +789,15 @@ $('#qc').onclick=()=>{$('#q').value='';render();$('#q').focus()};
 $('#so').addEventListener('change',e=>{sortBy=e.target.value;render()});
 document.addEventListener('click',e=>{
  if(e.target.classList&&e.target.classList.contains('ov')&&['m-dt','m-pv','m-ih'].indexOf(e.target.id)>-1)return closeM(e.target.id);
- const t=e.target.closest('[data-cat],[data-pv],[data-close],[data-eye],[data-lk],[data-dt],[data-cp],[data-clr],[data-fav],[data-pin],[data-arc],[data-sec]');if(!t)return;
+ const vs=e.target.closest('a[data-vs]');if(vs){const s=findSite(vs.dataset.vs);if(s&&offBlock(s)){e.preventDefault();e.stopPropagation()}return}
+ const t=e.target.closest('[data-cat],[data-pv],[data-close],[data-eye],[data-lk],[data-dt],[data-cp],[data-sh],[data-clr],[data-fav],[data-pin],[data-arc],[data-sec]');if(!t)return;
  if(t.dataset.cat!==undefined){cur=t.dataset.cat;render();if(scrollY<G.D)scrollSec('creations')}
  else if(t.dataset.lk){showLocker()}
  else if(t.dataset.fav||t.dataset.pin||t.dataset.arc){const k=t.dataset.fav?'fav':t.dataset.pin?'pin':'arc';toggle(k,t.dataset[k])}
- else if(t.dataset.pv){const s=findSite(t.dataset.pv);if(!s)return;const u=safeUrl(s.url);$('#pt').textContent=s.name;$('#po').href=u;$('#pf').src=u;openM('m-pv')}
+ else if(t.dataset.pv){const s=findSite(t.dataset.pv);if(!s)return;if(offBlock(s))return;const u=openUrl(s);$('#pt').textContent=s.name;$('#po').href=u;$('#pf').src=u;openM('m-pv')}
  else if(t.dataset.dt){if(e.target.closest('a'))return;openDetail(t.dataset.dt,t.closest('.card')?t.closest('.card').querySelector('.lnk'):t)}
  else if(t.dataset.cp){const s=findSite(t.dataset.cp);if(s)copyText(safeUrl(s.url)).then(ok=>toast(ok?'Link copied':'Could not copy the link',ok?'':'err'))}
+ else if(t.dataset.sh){shareSite(t.dataset.sh)}
  else if(t.dataset.clr){$('#q').value='';cur='All';render()}
  else if(t.dataset.sec){e.preventDefault();goHome(t.dataset.sec)}
  else if(t.dataset.close){closeM(t.dataset.close)}
@@ -710,12 +807,21 @@ document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&
 document.addEventListener('load',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.closest('.cv')){t.classList.add('ok');t.parentNode.classList.add('has')}},true);
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if($('#mp').classList.contains('on'))return menu(false);if($('#m-conf').classList.contains('on'))return closeM('m-conf');const o=$$('.ov.on').pop();if(o)return closeM(o.id);if($('#lkv').classList.contains('on'))closeLockerView()});
 // ---------- pages (hash routing): home, #/favourites, #/pinned, #/archive
-const LR=/^#\/(favourites|pinned|archive)$/,SECS=['home','categories','creations','recent'];
-function showView(v){view=v;const lib=v!=='home';$('#hv').classList.toggle('hide',lib);$('#lib').classList.toggle('hide',!lib);document.body.classList.toggle('inlib',lib);
+let pendSite=null,pendT=0;
+const shareUrl=id=>new URL('./',location.href).href+'#/site/'+encodeURIComponent(id);
+function openPend(){if(!pendSite)return;const s=D.sites.find(x=>x.id===pendSite);
+ if(s){const id=pendSite;pendSite=null;clearTimeout(pendT);openDetail(id,null);return}
+ clearTimeout(pendT);pendT=setTimeout(()=>{if(pendSite&&!D.sites.some(x=>x.id===pendSite)){pendSite=null;toast('This website is not in the list any more','err')}},8000)}
+async function shareSite(id){const s=D.sites.find(x=>x.id===id);if(!s)return;const u=shareUrl(id);
+ if(navigator.share){try{await navigator.share({title:s.name,text:s.name+' on My Digital Universe',url:u});return}catch(e){if(e&&e.name==='AbortError')return}}
+ copyText(u).then(ok=>toast(ok?'Share link copied':'Could not copy the link',ok?'':'err'))}
+const LR=/^#\/(favourites|pinned|archive|settings)$/,SECS=['home','categories','creations','recent'];
+function showView(v){view=v;const lib=v!=='home',st=v==='settings';$('#hv').classList.toggle('hide',lib);$('#lib').classList.toggle('hide',!lib||st);$('#set').classList.toggle('hide',!st);document.body.classList.toggle('inlib',lib);
  if(lib){$('#bn').style.opacity='';$('#ht').style.transform=''}
- document.title=lib?LIBS[v].t+' | My Digital Universe':'My Digital Universe';render()}
-function route(){const m=LR.exec(location.hash);
- if(m){showView(m[1]);scrollTo({top:0,behavior:'instant'})}
+ document.title=lib?(st?'Settings':LIBS[v].t)+' | My Digital Universe':'My Digital Universe';render();if(st)refreshSet()}
+function route(){const m=LR.exec(location.hash),sm=/^#\/site\/([^/]+)$/.exec(location.hash);
+ if(sm){if(view!=='home'){showView('home')}pendSite=decodeURIComponent(sm[1]);openPend()}
+ else if(m){showView(m[1]);scrollTo({top:0,behavior:'instant'})}
  else{const was=view;if(was!=='home'){showView('home');scrollTo({top:0,behavior:'instant'})}
   const id=location.hash.slice(1);if(id&&id!=='home'&&SECS.indexOf(id)>-1)requestAnimationFrame(()=>requestAnimationFrame(()=>scrollSec(id)))}}
 function goHome(id){if(view!=='home'){if(location.hash)history.pushState(null,'',location.pathname+location.search);showView('home');measure()}requestAnimationFrame(()=>scrollSec(id))}
@@ -758,6 +864,111 @@ function spy(){const y=scrollY;let c=view;
  $('#bt').classList.toggle('on',y>700)}
 let mq=0;function queueMeasure(){if(mq)return;mq=requestAnimationFrame(()=>{mq=0;measure();fx()})}
 (function(){let k=false;addEventListener('scroll',()=>{if(!k){k=true;requestAnimationFrame(()=>{k=false;fx()})}},{passive:true});addEventListener('resize',queueMeasure);addEventListener('load',queueMeasure);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(queueMeasure)})();
+// ---------- offline websites + settings (saved per browser in "dus_off"; never inside sites.json, so GitHub Sync is not affected)
+// A website opened through ./_off/<id>/ is kept in its own cache (dus-off-<id>) by the service worker. Removing that cache never touches
+// the website's own saved data (localStorage / IndexedDB), so e.g. calculator history stays safe.
+const OK='dus_off',OFFP='dus-off-',OSUP='serviceWorker'in navigator&&'caches'in window;
+function loadO(){try{const p=JSON.parse(localStorage.getItem(OK))||{};return{on:p.on===true,blocked:Array.isArray(p.blocked)?p.blocked.map(String):[]}}catch(e){return{on:false,blocked:[]}}}
+let O=loadO(),OI={},OIok=false,ST=null,PH=0,lastCfg='',cfgOK=false,cfgT=0;
+function saveO(){try{localStorage.setItem(OK,JSON.stringify(O))}catch(e){toast('Could not save the setting (storage blocked)','err')}}
+const ctl=()=>OSUP&&!!navigator.serviceWorker.controller;
+const sameOr=s=>{try{return new URL(safeUrl(s.url)).origin===location.origin}catch(e){return false}};
+const offElig=s=>!!s&&OSUP&&sameOr(s)&&D.sites.some(x=>x.id===s.id);
+const offAllowed=s=>O.blocked.indexOf(s.id)<0;
+const offActive=s=>O.on&&offElig(s)&&offAllowed(s)&&ctl()&&cfgOK;
+const offReady=s=>offActive(s)&&!!(OI[s.id]&&OI[s.id].files);
+function openUrl(s){const u=safeUrl(s.url);return offActive(s)?new URL('_off/'+encodeURIComponent(s.id)+'/',location.href).href:u}
+function offBlock(s){ // stop a click when there is no internet and the website was never saved
+ if(navigator.onLine!==false)return false;
+ if(offReady(s))return false;
+ toast(offActive(s)&&OIok?'This website is not saved offline yet. Connect to the internet and open it once.':'No internet. This website needs internet to open.','err');return true}
+function cfgJson(){const sites={};D.sites.forEach(s=>{if(offElig(s))sites[s.id]={u:safeUrl(s.url),en:offAllowed(s)}});return JSON.stringify({on:O.on,sites})}
+async function swReady(){if(!OSUP)return null;try{const r=await Promise.race([navigator.serviceWorker.ready,new Promise(x=>setTimeout(x,2500))]);return r&&(r.active||navigator.serviceWorker.controller)||null}catch(e){return null}}
+async function pushCfg(){ // tell the service worker which websites may be saved; waits for its answer
+ const j=cfgJson(),w=await swReady();if(!w)return false;
+ const ok=await new Promise(res=>{const ch=new MessageChannel(),t=setTimeout(()=>res(false),2000);ch.port1.onmessage=()=>{clearTimeout(t);res(true)};try{w.postMessage({t:'cfg',cfg:JSON.parse(j)},[ch.port2])}catch(e){clearTimeout(t);res(false)}});
+ if(ok){lastCfg=j;const was=cfgOK;cfgOK=true;if(!was)render()}return ok}
+function schedCfg(){if(!OSUP)return;const j=cfgJson();if(j===lastCfg){if(!cfgOK&&ctl()){cfgOK=true}return}cfgOK=false;clearTimeout(cfgT);cfgT=setTimeout(()=>{pushCfg().then(ok=>{if(ok)render()})},250)}
+async function scanOff(){
+ if(!OSUP)return;const R={};
+ try{for(const k of await caches.keys()){if(k.indexOf(OFFP)!==0)continue;const c=await caches.open(k),rq=await c.keys();let b=0;
+  for(const q of rq){const m=await c.match(q);if(!m)continue;const h=+m.headers.get('x-dus-bytes');if(h>0)b+=h;else{try{b+=(await m.blob()).size}catch(e){}}}
+  if(rq.length)R[k.slice(OFFP.length)]={files:rq.length,bytes:b}}
+  try{const c=await caches.open('dus-img');PH=(await c.keys()).length}catch(e){PH=0}}catch(e){}
+ const ch=JSON.stringify(R)!==JSON.stringify(OI);OI=R;OIok=true;return ch}
+async function stEst(){try{const e=await navigator.storage.estimate();return{u:e.usage||0,q:e.quota||0,p:navigator.storage.persisted?await navigator.storage.persisted():null}}catch(e){return null}}
+async function refreshSet(){const ch=await scanOff();ST=await stEst();if(view==='settings')renderSet();else if(ch)render()}
+const fmtB=b=>b<1024?b+' B':b<1048576?Math.round(b/1024)+' KB':b<1073741824?(b/1048576).toFixed(1)+' MB':(b/1073741824).toFixed(2)+' GB';
+function siteSt(s){
+ const i=OI[s.id],sz=i?fmtB(i.bytes):'';
+ if(!OSUP)return{t:'This browser cannot save websites offline',s:''};
+ if(!sameOr(s))return{t:'Other domain: always online only',s:''};
+ if(!offAllowed(s))return{t:'Online only (saves phone space)',s:i?'Saved copy still stored: '+sz:''};
+ if(!O.on)return{t:'Offline is OFF for the whole app',s:i?'Saved copy kept: '+sz+' (not used)':''};
+ if(i)return{t:'Saved for offline',s:sz+' on this phone, '+i.files+' file'+(i.files==1?'':'s'),ok:1};
+ return{t:'Not saved yet. Open it once with internet.',s:''}}
+function renderSet(){
+ const el=$('#setc');if(!el)return;
+ const ids=Object.keys(OI),tot=ids.reduce((a,k)=>a+OI[k].bytes,0),n=ids.length,q=ST,pc=q&&q.q?Math.max(1,Math.min(100,Math.round(q.u/q.q*100))):0;
+ const sw=(a,on,lb,dis)=>'<button type="button" class="swt" role="switch" '+a+' aria-checked="'+(on?'true':'false')+'" aria-label="'+esc(lb)+'"'+(dis?' aria-disabled="true"':'')+'></button>';
+ let h='<div class="sc"><h3>'+ic('down')+'Offline websites</h3><p class="sd">When this is ON, a website that you have opened once with internet keeps working without internet. If a website has an online-only part (live data, login, chat), only that part stops. Everything else keeps working.</p>'
+ +'<div class="srow"><div><b>Keep websites offline</b><small>'+(O.on?'ON: every website below that is switched on is saved the first time you open it online.':'OFF: no website works offline.')+'</small></div>'+sw('data-om="1"',O.on,'Keep websites offline')+'</div>';
+ if(!OSUP)h+='<p class="sw">This browser does not support offline saving.</p>';
+ else if(O.on&&!ctl())h+='<p class="sw">The offline engine is starting. Reload the app once if this message stays.</p>';
+ h+='<div class="sbt"><button type="button" class="sec" data-oall="1">Keep all websites offline</button><button type="button" class="sec" data-oonly="1">Online only for all (frees space)</button></div></div>';
+ h+='<div class="sc"><h3>'+ic('grid')+'Phone storage</h3>'
+ +'<div class="srow"><div><b>Saved for offline: '+fmtB(tot)+'</b><small>'+n+' website'+(n==1?'':'s')+' saved. Cover photos saved: '+PH+' (always kept, they are small).</small></div></div>'
+ +(q&&q.q?'<div class="meter" aria-hidden="true"><i style="width:'+pc+'%"></i></div><small class="sd">This domain uses '+fmtB(q.u)+' of about '+fmtB(q.q)+' available browser storage (all websites on this domain together).</small>':'<small class="sd">Storage numbers are not available in this browser.</small>')
+ +(q&&q.p!==null?'<div class="srow"><div><b>'+(q.p?'Saved data is protected':'Saved data can be cleared by the phone')+'</b><small>'+(q.p?'The phone will not remove it when space runs low.':'If the phone gets very low on space it may remove saved websites. You can ask it to keep them.')+'</small></div>'+(q.p?'':'<button type="button" class="sec" data-oper="1">Protect it</button>')+'</div>':'')+'</div>';
+ h+='<div class="sc"><h3>'+ic('globe')+'Your websites</h3><p class="sd">Switch a website OFF to keep it online only. Use the button to delete its saved copy and free space. This only removes the saved copy of the website files. Anything the website stores itself (scores, calculations, history) is never touched.</p>';
+ const sites=D.sites.slice();
+ sites.forEach(s=>{const st=siteSt(s),el2=offElig(s),i=OI[s.id];
+  h+='<div class="sx"><div class="tn">'+cover(s,'tn',true)+'</div><div class="si"><b>'+esc(s.name)+'</b><small'+(st.ok?' class="ok"':'')+'>'+esc(st.t)+'</small>'+(st.s?'<small>'+esc(st.s)+'</small>':'')+'</div><div class="sa">'
+  +(i?'<button type="button" class="sec" data-of="'+esc(s.id)+'">'+ic('x')+'Free '+fmtB(i.bytes)+'</button>':'')
+  +sw('data-ow="'+esc(s.id)+'"',el2&&offAllowed(s),'Keep '+s.name+' offline',!el2)+'</div></div>'});
+ ids.filter(k=>!D.sites.some(x=>x.id===k)).forEach(k=>{h+='<div class="sx"><div class="tn"><div class="cv tn"><span>?</span></div></div><div class="si"><b>Removed website</b><small>'+fmtB(OI[k].bytes)+' still saved</small></div><div class="sa"><button type="button" class="sec" data-of="'+esc(k)+'">'+ic('x')+'Free '+fmtB(OI[k].bytes)+'</button></div></div>'});
+ if(!sites.length)h+='<p class="sd">No websites yet.</p>';
+ h+='</div>';
+ h+='<div class="sc"><h3>'+ic('spark')+'App intro</h3><p class="sd">A short intro plays when you open the installed app.</p>'
+ +'<div class="srow"><div><b>Show intro when the app opens</b><small>Only in the installed app. Not shown again until you close and reopen it.</small></div>'+sw('data-oi="1"',introOn(),'Show intro when the app opens')+'</div>'
+ +'<div class="sbt"><button type="button" class="sec" data-oip="1">'+ic('eye')+'Play intro now</button></div></div>';
+ el.innerHTML=h}
+async function freeSite(id,block){
+ if(block&&O.blocked.indexOf(id)<0&&D.sites.some(x=>x.id===id)){O.blocked.push(id);saveO()}
+ await pushCfg();try{await caches.delete(OFFP+id)}catch(e){}
+ await refreshSet();render()}
+$('#setc').addEventListener('click',async e=>{
+ const t=e.target.closest('[data-om],[data-ow],[data-of],[data-oall],[data-oonly],[data-oper],[data-oi],[data-oip]');if(!t||t.getAttribute('aria-disabled')==='true')return;
+ if(t.dataset.om){O.on=!O.on;saveO();await pushCfg();if(O.on){try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(x){}}
+  toast(O.on?'Offline is ON. Websites are saved when you open them with internet.':'Offline is OFF. Saved copies are kept until you free them.');await refreshSet();render()}
+ else if(t.dataset.ow){const s=findSite(t.dataset.ow);if(!s)return;const i=O.blocked.indexOf(s.id);
+  if(i>-1){O.blocked.splice(i,1);saveO();await pushCfg();toast(s.name+' will be saved when you open it with internet');await refreshSet();render()}
+  else{O.blocked.push(s.id);saveO();const had=OI[s.id];await pushCfg();if(had){try{await caches.delete(OFFP+s.id)}catch(x){}}toast(s.name+' is online only now'+(had?'. Saved copy removed ('+fmtB(had.bytes)+' freed)':''));await refreshSet();render()}}
+ else if(t.dataset.of){const id=t.dataset.of,s=findSite(id),i=OI[id];if(!i)return;
+  ask('Delete the saved offline copy of "'+(s?s.name:'this website')+'" ('+fmtB(i.bytes)+')? It will not work offline afterwards. Anything the website saved itself (scores, calculations) stays safe.',async()=>{await freeSite(id,true);toast('Deleted. '+fmtB(i.bytes)+' freed')})}
+ else if(t.dataset.oall){O.blocked=[];saveO();await pushCfg();toast('All websites can be saved offline');await refreshSet();render()}
+ else if(t.dataset.oonly){ask('Make every website online only and delete all saved offline copies? Anything the websites saved themselves (scores, calculations) stays safe.',async()=>{D.sites.forEach(s=>{if(O.blocked.indexOf(s.id)<0)O.blocked.push(s.id)});saveO();await pushCfg();
+   try{for(const k of await caches.keys())if(k.indexOf(OFFP)===0)await caches.delete(k)}catch(x){}toast('All offline copies deleted');await refreshSet();render()})}
+ else if(t.dataset.oper){let ok=false;try{ok=await navigator.storage.persist()}catch(x){}toast(ok?'Saved data is now protected':'The phone did not allow it. Installing the app to the home screen usually helps.',ok?'':'err');await refreshSet()}
+ else if(t.dataset.oi){setIntro(!introOn());renderSet()}
+ else if(t.dataset.oip){if(window.playIntro)playIntro();else toast('Intro is not available','err')}
+});
+// intro preference (read by the tiny script in <head>, so it has its own key)
+const introOn=()=>{try{return localStorage.getItem('dus_intro')!=='0'}catch(e){return true}};
+function setIntro(on){try{localStorage.setItem('dus_intro',on?'1':'0')}catch(e){}}
+addEventListener('offline',()=>toast('You are offline. Saved websites still open.'));
+addEventListener('online',()=>{toast('Back online');refreshSet()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSet()});
+if(OSUP)navigator.serviceWorker.addEventListener('controllerchange',()=>{schedCfg();render()});
+scanOff().then(()=>render());
+// shared link (#/site/<id>): when its detail window is closed, remove the hash so the page is a normal home page again
+new MutationObserver(()=>{if(!$('#m-dt').classList.contains('on')&&/^#\/site\//.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}).observe($('#m-dt'),{attributes:true,attributeFilter:['class']});
+// ---------- app-open intro controller (the animation itself is pure CSS; this only ends it and lets Settings replay it)
+(function(){const h=document.documentElement,sp=$('#splash'),RM=matchMedia('(prefers-reduced-motion: reduce)');let t=0;
+ const end=()=>{clearTimeout(t);h.classList.remove('intro','out')},arm=()=>{clearTimeout(t);t=setTimeout(end,RM.matches?1500:5100)};
+ window.playIntro=()=>{h.classList.remove('intro','out');void h.offsetWidth;h.classList.add('intro');arm()};
+ if(h.classList.contains('intro'))arm();
+ sp.addEventListener('click',()=>{h.classList.add('out');clearTimeout(t);t=setTimeout(end,300)})})();
 // ---------- admin access
 function openAdmin(){
  if(!hasPw()){toast('No admin password yet. Type @password in the search bar to create one.','err');return}
